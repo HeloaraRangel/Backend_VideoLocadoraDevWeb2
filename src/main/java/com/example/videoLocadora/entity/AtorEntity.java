@@ -1,5 +1,5 @@
 package com.example.videoLocadora.entity;
-
+import java.util.List;
 import java.util.Objects;
 
 import org.springframework.beans.BeanUtils;
@@ -11,6 +11,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -23,6 +24,9 @@ public class AtorEntity {
 	
 	@Column (nullable = false)
 	private String nome;
+	
+	@ManyToMany
+	private List<TituloEntity> titulos;
 	
 	//para converter de dto para entity
 	public AtorEntity(AtorDTO ator) {
@@ -67,24 +71,6 @@ public class AtorEntity {
 		AtorEntity other = (AtorEntity) obj;
 		return Objects.equals(id, other.id);
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
-	
-
-	
-	
-	
 	
 	
 	

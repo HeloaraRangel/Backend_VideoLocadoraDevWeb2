@@ -11,6 +11,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -29,6 +31,10 @@ public class ItemEntity {
 	
 	@Column (nullable = false)
 	private String tipoItem;
+	
+	@ManyToOne
+	@JoinColumn(name = "Titulo_Id")
+	private TituloEntity titulo;
 	
 	//para converter de dto para entity
 	public ItemEntity(ItemDTO item) {
@@ -72,9 +78,13 @@ public class ItemEntity {
 	public void setTipoItem(String tipoItem) {
 		this.tipoItem = tipoItem;
 	}
-	
-	
-	
-	
+
+	public TituloEntity getTitulo() {
+		return titulo;
+	}
+
+	public void setTitulo(TituloEntity titulo) {
+		this.titulo = titulo;
+	}
 	
 }

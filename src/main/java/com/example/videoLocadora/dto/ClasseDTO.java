@@ -1,5 +1,6 @@
 package com.example.videoLocadora.dto;
 
+
 import org.springframework.beans.BeanUtils;
 
 import com.example.videoLocadora.entity.ClasseEntity;
@@ -10,7 +11,7 @@ public class ClasseDTO {
 	private Long id;
 	private String nome;
 	private double valor;
-	private String data;
+	private int prazoDevolucao;
 	
 	//para converter de entity para dto 
 	public ClasseDTO(ClasseEntity classe) {
@@ -43,12 +44,12 @@ public class ClasseDTO {
 		this.valor = valor;
 	}
 
-	public String getData() {
-		return data;
+	public int getPrazoDevolucao() {
+		return prazoDevolucao;
 	}
-	public void setData(String data) {
-		this.data = data;
+
+	public void setPrazoDevolucao(int prazoDevolucao) {
+		this.prazoDevolucao = prazoDevolucao;
 	}
-	
-	
+
 }

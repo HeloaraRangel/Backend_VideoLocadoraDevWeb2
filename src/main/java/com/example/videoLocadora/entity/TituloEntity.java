@@ -1,20 +1,26 @@
 package com.example.videoLocadora.entity;
 
+import java.util.List;
 import java.util.Objects;
 
 import org.springframework.beans.BeanUtils;
 
 import com.example.videoLocadora.dto.TituloDTO;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "Titulo")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class TituloEntity {
 	
 	@Id
@@ -32,6 +38,23 @@ public class TituloEntity {
 	
 	@Column (nullable = false)
 	private String categoria;
+	
+	@ManyToMany
+	@JoinTable(name = "titulo_ator",
+	    joinColumns = @JoinColumn(name = "titulo_id"),
+	    inverseJoinColumns = @JoinColumn(name = "ator_id"))
+	private List<AtorEntity> atores;
+	
+	@ManyToOne
+	@JoinColumn(name = "diretor_id")
+	private DiretorEntity diretor;
+	
+	
+	@ManyToOne
+	@JoinColumn(name = "classe_id")
+	private ClasseEntity classe;
+	
+	
 	
 	//construtor
 	public TituloEntity() {
@@ -84,6 +107,32 @@ public class TituloEntity {
 		this.categoria = categoria;
 	}
 	
+	
+	public List<AtorEntity> getAtores() {
+		return atores;
+	}
+
+	public void setAtores(List<AtorEntity> atores) {
+		this.atores = atores;
+	}
+
+	public DiretorEntity getDiretor() {
+		return diretor;
+	}
+
+	public void setDiretor(DiretorEntity diretor) {
+		this.diretor = diretor;
+	}
+
+
+	public ClasseEntity getClasse() {
+		return classe;
+	}
+
+	public void setClasse(ClasseEntity classe) {
+		this.classe = classe;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);

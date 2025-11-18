@@ -7,21 +7,25 @@ import org.springframework.beans.BeanUtils;
 import com.example.videoLocadora.entity.ItemEntity;
 
 public class ItemDTO {
-	
-	private Long id;
-	private String numSerie;
-	private Date dtAquisicao;
-	private String tipoItem;
-	
-	public ItemDTO(ItemEntity item) {
-		BeanUtils.copyProperties(item, this);
-	}
-	
-	//construtor
-	public ItemDTO() {
-					
-	}
 
+    private Long id;
+    private String numSerie;
+    private Date dtAquisicao;
+    private String tipoItem;
+    private TituloDTO titulo;
+
+    public ItemDTO() {
+    }
+
+    public ItemDTO(ItemEntity item) {
+        BeanUtils.copyProperties(item, this);
+
+        if (item.getTitulo() != null) {
+            this.titulo = new TituloDTO(item.getTitulo());
+        }
+    }
+
+	// getters e setters
 	public Long getId() {
 		return id;
 	}
@@ -53,7 +57,16 @@ public class ItemDTO {
 	public void setTipoItem(String tipoItem) {
 		this.tipoItem = tipoItem;
 	}
-	
-	
 
+	public TituloDTO getTitulo() {
+		return titulo;
+	}
+
+	public void setTitulo(TituloDTO titulo) {
+		this.titulo = titulo;
+	}
+
+    
+    
 }
+

@@ -1,20 +1,24 @@
 package com.example.videoLocadora.entity;
 
+import java.util.List;
 import java.util.Objects;
 
 import org.springframework.beans.BeanUtils;
 
 import com.example.videoLocadora.dto.DiretorDTO;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "Diretor")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class DiretorEntity {
 	
 	@Id
@@ -23,6 +27,9 @@ public class DiretorEntity {
 	
 	@Column (nullable = false)
 	private String nome;
+	
+	@OneToMany(mappedBy="diretor")
+	private List<TituloEntity> titulos;
 	
 	//para converter de dto para entity
 	public DiretorEntity(DiretorDTO diretor) {

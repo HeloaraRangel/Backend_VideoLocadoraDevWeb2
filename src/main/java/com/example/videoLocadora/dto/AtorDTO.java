@@ -1,5 +1,6 @@
 package com.example.videoLocadora.dto;
 
+
 import org.springframework.beans.BeanUtils;
 
 import com.example.videoLocadora.entity.AtorEntity;
@@ -32,7 +33,5 @@ public class AtorDTO {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	
-	
-	
+
 }
